@@ -41,7 +41,7 @@ public class UserServiceTest {
         userTwo.setUser_id(2l);
         userTwo.setUsername("Delfina");
         userTwo.setEmail("delfina10@gmail.com");
-        userTwo.setPassword("1234");
+        userTwo.setPassword("5678");
 
         BDDMockito.given(iUserRepository.findAll()).willReturn(List.of(userOne, userTwo));
 //        When
