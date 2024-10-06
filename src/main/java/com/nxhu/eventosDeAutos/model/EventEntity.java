@@ -20,14 +20,19 @@ public class EventEntity {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id", nullable = false)
+    private AddressEntity address;
+
     @Column(nullable = false)
     private LocalDate date;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private String category;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private CategoryEntity category;
 
     private BigDecimal price;
     private String image;

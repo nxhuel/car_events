@@ -9,17 +9,19 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "address")
+public class AddressEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long address_id;
 
     @Column(nullable = false)
-    private String username;
-    @Column(unique = true, nullable = false)
-    private String email;
-    @Column(unique = true, nullable = false)
-    private String password;
+    private String street;
 
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String country;
 }

@@ -9,17 +9,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "categories")
+public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long category_id;
 
     @Column(nullable = false)
-    private String username;
-    @Column(unique = true, nullable = false)
-    private String email;
-    @Column(unique = true, nullable = false)
-    private String password;
-
+    private String name;
 }
