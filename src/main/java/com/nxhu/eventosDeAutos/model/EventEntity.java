@@ -30,14 +30,14 @@ public class EventEntity {
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private CategoryEntity category;
 
     private BigDecimal price;
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_dni", nullable = false)
     private UserEntity creator;
 }

@@ -11,10 +11,11 @@ import lombok.*;
 @Entity
 @Table(name = "categories")
 public class CategoryEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long category_id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(name = "is_private", nullable = false)
+    private Boolean isPrivate;
 }

@@ -12,8 +12,7 @@ import lombok.*;
 @Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long user_dni;
 
     @Column(nullable = false)
     private String username;
@@ -21,5 +20,4 @@ public class UserEntity {
     private String email;
     @Column(unique = true, nullable = false)
     private String password;
-
 }
