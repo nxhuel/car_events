@@ -146,4 +146,55 @@ public class EventControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(eventOne.getName())));
     }
 
+    @Test
+    void testCreateEvent() throws Exception {
+//        Given
+        BDDMockito.given(iEventService.createEvent(eventOne)).willReturn(eventOne);
+//        When
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/v1/api/event/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(eventOne)));
+//        Then
+        response.andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
+    void testDeleteEvent() throws Exception {
+//        Given
+        iEventRepository.save(eventOne);
+
+        BDDMockito.willDoNothing().given(iEventService).deleteEvent(eventOne.getEvent_id());
+//        When
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.delete("/v1/api/event/delete/{event_id}", eventOne.getEvent_id()));
+//        Then
+        response.andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    void testUpdateEvent() throws Exception {
+//        Given
+
+        BDDMockito.given(iEventService.getEvent(eventOne.getEvent_id())).willReturn(eventOne);
+
+        eventOne.setName("Autos de prueba");
+        eventOne.setAddress(addressOne);
+        eventOne.setDate(LocalDate.of(2025, 6, 15));
+        eventOne.setDescription("Probar autos");
+        eventOne.setCategory(categoryPublic);
+        eventOne.setCreator(userOne);
+
+        BDDMockito.given(iEventService.getEvent(eventOne.getEvent_id())).willReturn(eventOne);
+
+        BDDMockito.given(iEventService.updateEvent(eventOne.getEvent_id(), eventOne.getName(), eventOne.getAddress(), eventOne.getDate(), eventOne.getDescription(), eventOne.getCategory(), eventOne.getPrice(), eventOne.getImage(), eventOne.getCreator())).willReturn(eventOne);
+
+//        When
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.put("/v1/api/event/update/{event_id}", eventOne.getEvent_id())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(eventOne)));
+
+//        Then
+        response.andDo(MockMvcResultHandlers.print());
+    }
 }
