@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        userOne.setUser_id(1l);
+        userOne.setUser_dni(1l);
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@gmail.com");
         userOne.setPassword("1234");
@@ -71,10 +71,10 @@ public class UserServiceTest {
 //        Given
         BDDMockito.given(iUserRepository.findById(1l)).willReturn(Optional.of(userOne));
 //        When
-        UserEntity userFound = userService.getUser(userOne.getUser_id());
+        UserEntity userFound = userService.getUser(userOne.getUser_dni());
 //        Then
         Assertions.assertThat(userFound).isNotNull();
-        Assertions.assertThat(userFound.getUser_id()).isEqualTo(1l);
+        Assertions.assertThat(userFound.getUser_dni()).isEqualTo(1l);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class UserServiceTest {
     void testCreateUser() {
 //        Given
         UserEntity userTwo = new UserEntity();
-        userTwo.setUser_id(2l);
+        userTwo.setUser_dni(2l);
         userTwo.setUsername("Delfina");
         userTwo.setEmail("delfina10@gmail.com");
         userTwo.setPassword("5678");
@@ -124,9 +124,9 @@ public class UserServiceTest {
         userOne.setPassword("4321");
         BDDMockito.given(iUserRepository.findById(1l)).willReturn(Optional.of(userOne));
 //        When
-        UserEntity updatedUser = userService.updateUser(userOne.getUser_id(), userOne.getUsername(), userOne.getEmail(), userOne.getPassword());
+        UserEntity updatedUser = userService.updateUser(userOne.getUser_dni(), userOne.getUsername(), userOne.getEmail(), userOne.getPassword());
 //        Then
-        Assertions.assertThat(updatedUser.getUser_id()).isEqualTo(1l);
+        Assertions.assertThat(updatedUser.getUser_dni()).isEqualTo(1l);
         Assertions.assertThat(updatedUser.getUsername()).isEqualTo("Santiago");
         Assertions.assertThat(updatedUser.getEmail()).isEqualTo("santiago10@gmail.com");
         Assertions.assertThat(updatedUser.getPassword()).isEqualTo("4321");

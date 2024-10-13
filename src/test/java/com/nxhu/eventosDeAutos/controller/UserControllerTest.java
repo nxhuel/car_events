@@ -1,6 +1,5 @@
 package com.nxhu.eventosDeAutos.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nxhu.eventosDeAutos.model.UserEntity;
 import com.nxhu.eventosDeAutos.service.IUserService;
@@ -39,21 +38,21 @@ public class UserControllerTest {
 //        Given
         List<UserEntity> userList = new ArrayList<>();
         UserEntity userOne = new UserEntity();
-        userOne.setUser_id(1l);
+        userOne.setUser_dni(1l);
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@gmail.com");
         userOne.setPassword("1234");
         userList.add(userOne);
 
         UserEntity userTwo = new UserEntity();
-        userTwo.setUser_id(2l);
+        userTwo.setUser_dni(2l);
         userTwo.setUsername("Delfina");
         userTwo.setEmail("delfina10@gmail.com");
         userTwo.setPassword("5678");
         userList.add(userTwo);
 
         UserEntity userThree = new UserEntity();
-        userThree.setUser_id(3l);
+        userThree.setUser_dni(3l);
         userThree.setUsername("Santino");
         userThree.setEmail("santino10@gmail.com");
         userThree.setPassword("9101112");
@@ -74,14 +73,14 @@ public class UserControllerTest {
     void testGetUser() throws Exception {
 //        Given
         UserEntity userOne = new UserEntity();
-        userOne.setUser_id(1l);
+        userOne.setUser_dni(1l);
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@gmail.com");
         userOne.setPassword("1234");
 
-        BDDMockito.given(iUserService.getUser(userOne.getUser_id())).willReturn(userOne);
+        BDDMockito.given(iUserService.getUser(userOne.getUser_dni())).willReturn(userOne);
 //        When
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/v1/api/user/{userId}", userOne.getUser_id())
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/v1/api/user/{userId}", userOne.getUser_dni())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userOne)));
 //        Then
@@ -96,7 +95,7 @@ public class UserControllerTest {
     void testCreateUser() throws Exception{
 //        Given
         UserEntity userOne = new UserEntity();
-        userOne.setUser_id(1l);
+        userOne.setUser_dni(1l);
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@gmail.com");
         userOne.setPassword("1234");
@@ -130,22 +129,22 @@ public class UserControllerTest {
     void testUpdateUser() throws Exception {
 //        Given
         UserEntity userOne = new UserEntity();
-        userOne.setUser_id(1l);
+        userOne.setUser_dni(1l);
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@gmail.com");
         userOne.setPassword("1234");
 
-        BDDMockito.given(iUserService.getUser(userOne.getUser_id())).willReturn(userOne);
+        BDDMockito.given(iUserService.getUser(userOne.getUser_dni())).willReturn(userOne);
 
         userOne.setUsername("Santiago");
         userOne.setEmail("santiago10@yahoo.com");
         userOne.setPassword("5678");
 
-        BDDMockito.given(iUserService.getUser(userOne.getUser_id())).willReturn(userOne);
-        BDDMockito.given(iUserService.updateUser(userOne.getUser_id(), userOne.getUsername(), userOne.getEmail(), userOne.getPassword()))
+        BDDMockito.given(iUserService.getUser(userOne.getUser_dni())).willReturn(userOne);
+        BDDMockito.given(iUserService.updateUser(userOne.getUser_dni(), userOne.getUsername(), userOne.getEmail(), userOne.getPassword()))
                 .willAnswer((invocation) -> invocation.getArgument(0));
 //        When
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.put("/v1/api/user/update/{userId}", userOne.getUser_id())
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.put("/v1/api/user/update/{userId}", userOne.getUser_dni())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userOne)));
 //        Then
