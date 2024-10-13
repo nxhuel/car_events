@@ -7,11 +7,11 @@ import java.util.List;
 public interface IUserService {
     public List<UserEntity> getUsers();
 
-    public UserEntity getUser(Long userId);
+    public UserEntity getUser(Long user_dni);
 
     public UserEntity createUser(UserEntity userEntity);
 
-    public void deleteUser(Long userId);
+    public void deleteUser(Long user_dni);
 
-    public UserEntity updateUser(Long userId, String newUsername, String newEmail, String newPassword);
+    public UserEntity updateUser(Long user_dni, String newUsername, String newEmail, String newPassword);
 }

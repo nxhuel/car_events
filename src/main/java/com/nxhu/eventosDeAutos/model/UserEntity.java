@@ -12,6 +12,7 @@ import lombok.*;
 @Table(name = "users")
 public class UserEntity {
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_dni;
 
     @Column(nullable = false)

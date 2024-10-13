@@ -18,7 +18,7 @@ public class CodeQrEntity {
 
     @OneToOne
     @JoinColumn(name = "event_id", nullable = true)
-    private EventEntity event_id;
+    private EventEntity event;
 
     @Column(nullable = false)
     private String code_qr;

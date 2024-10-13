@@ -25,8 +25,8 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserEntity getUser(Long userId) {
-        return iUserRepository.findById(userId).orElseThrow(() -> new ExceptionUserNotFound(userId));
+    public UserEntity getUser(Long user_dni) {
+        return iUserRepository.findById(user_dni).orElseThrow(() -> new ExceptionUserNotFound(user_dni));
     }
 
     @Override
@@ -35,16 +35,16 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void deleteUser(Long userId) {
-        iUserRepository.deleteById(userId);
+    public void deleteUser(Long user_dni) {
+        iUserRepository.deleteById(user_dni);
     }
 
     @Override
-    public UserEntity updateUser(Long userId, String newUsername, String newEmail, String newPassword) {
-        UserEntity newUser =  this.getUser(userId);
+    public UserEntity updateUser(Long user_dni, String newUsername, String newEmail, String newPassword) {
+        UserEntity newUser =  this.getUser(user_dni);
 
         if (newUser == null) {
-            throw new ExceptionUserNotFound(userId);
+            throw new ExceptionUserNotFound(user_dni);
         }
 
         newUser.setUsername(newUsername);

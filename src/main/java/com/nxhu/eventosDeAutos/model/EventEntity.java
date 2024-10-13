@@ -30,8 +30,8 @@ public class EventEntity {
     @Column(nullable = false)
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
 
     private BigDecimal price;
