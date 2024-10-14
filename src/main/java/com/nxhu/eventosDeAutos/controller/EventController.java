@@ -1,9 +1,6 @@
 package com.nxhu.eventosDeAutos.controller;
 
-import com.nxhu.eventosDeAutos.model.AddressEntity;
-import com.nxhu.eventosDeAutos.model.CategoryEntity;
 import com.nxhu.eventosDeAutos.model.EventEntity;
-import com.nxhu.eventosDeAutos.model.UserEntity;
 import com.nxhu.eventosDeAutos.service.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
